@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <head>
+        <title>Post Question Page</title>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />        
+        <meta http-equiv="refresh" />
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>        
+        
+               <link rel="stylesheet" href="Main_CSS.css"></link>
+    </head>
+    <body>
+       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                    
+        <div class="container">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>             
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <p class="navbar-text" style="font-size:larger; color:seagreen"><strong> Welcome #{login.id}</strong></p> 
+                                 
+                </ul>          
+                
+                <ul class="nav navbar-nav navbar-right">                    
+                <li class="active"><a class="btn btn-transparent" role="button" href="index.xhtml" ><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-left">                    
+                <li class="active"><a class="btn btn-transparent" role="button" href="Ask_Question_MainPage.xhtml" ><span class="glyphicon glyphicon-menu-left"></span> Go Back</a></li>
+                </ul>              
+            </div>
+        </div>
+        </nav>
+        
+        <!-- Start Image Slide Show -->     
+                <ul class="slideshow">
+                    <li><span>Image 01</span><div><h3>A Little Adventure...</h3></div></li>
+                    <li><span>Image 02</span><div><h3>Into the Realms...</h3></div></li>
+                    <li><span>Image 03</span><div><h3>Away from the Mundane...</h3></div></li>
+                    <li><span>Image 04</span><div><h3>Into the Lap of Nature...</h3></div></li>
+                    <li><span>Image 05</span><div><h3>Explore the Unknown...</h3></div></li>
+                    <li><span>Image 06</span><div><h3>Beyond the Horizons...</h3></div></li>
+                </ul> 
+            <!-- End Image Slide Show -->
+ 
+        <div class="container">
+        <center>
+       <h:form style="margin-top: 80px; margin-left: 10px; background-color: white; color:black; border-radius: 10px; background-image: url(./Travel_Images/Beach.jpg)">   
+           <br/><br/>
+            <h:dataTable class="table table-striped table-bordered table-hover table-responsive table-header-fixed" style="width:auto; text-align: center; background-image: url(./Travel_Images/Sky.jpg)" value="#{attractions.attr1}" var="att" border="1" 
+                         rows ="#{attractions.attr1.size()}" rendered="#{not empty attractions.attr1}">
+                <h:column>
+                    <f:facet name="header"><center>Attraction Id</center></f:facet>
+                    #{att.attr_Id}                    
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><center>Attraction Name</center></f:facet>
+                    #{att.attr_Name}                    
+                </h:column>
+                <h:column>
+                       <f:facet name="header"><center>Post a Question</center></f:facet>                       
+                       <h:inputTextarea  class="form-control" id="question" required ="true"
+                                    requiredMessage="The question field cannot be empty"
+                               title="Please enter the Question"
+                               p:placeholder="Post a Question"
+                               onfocus="this.value=''"
+                               value="#{attractions.question}">
+                       </h:inputTextarea>
+                       <h:messages for="question" style="color:red; margin:5px;" />                    
+                </h:column>
+                <br/>                
+                <h:column>
+                    <p>
+                        <h:commandButton class="btn btn-success" id="post" value="Post"
+                                         action="#{attractions.postQuestion_Attractions(att.attr_Id,login.id)}"></h:commandButton>
+
+                    </p>       
+                </h:column>
+            </h:dataTable>            
+           <br/>
+        </h:form>   
+            </center>
+        </div> 
+    </body>
+</html>

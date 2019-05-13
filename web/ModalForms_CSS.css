@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 2, 2018, 5:34:22 PM
+    Author     : kaula
+*/
+
+#modalRegister .modal-body{
+                background-image: url('./Travel_Images/Sky.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;            
+            }   
+            
+            #modalLogin .modal-body {
+                background-image: url('./Travel_Images/Homes.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;       
+            }   
+            
+            #modalRegister .modal-dialog{
+                width:1000px;
+            }
+            
+            #modalLogin .modal-dialog{
+                width:500px;
+            }

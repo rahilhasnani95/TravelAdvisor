@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Register an Online Account</title>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="refresh"/>
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="Tags_Checkboxes_CSS.css"></link>   
+            
+    </h:head>
+    <h:body style="margin-left: 50px">
+       
+        <h:form>
+            <h3>Create a new User Account!</h3>          
+            
+            <p>Please enter your User ID to Register:<br></br>
+                <h:inputText class="form-control" style="width:300px" id="id" required ="true" 
+                             requiredMessage="The ID field cannot be empty"
+                        title="Please enter your ID"
+                        value="#{register.id}"
+                        validatorMessage="The length of your selected 
+                        ID must be between 3 and 10 and also must contain atleast 1 letter and 1 digit.">
+                    <f:validateRegex pattern ="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,10}$" />              
+                </h:inputText>
+                <h:messages for="id" style="color:red; margin:5px;" />                
+            </p>
+            <br/>
+            <p>Please enter your selected password:<br></br>
+                <h:inputSecret class="form-control" style="width:300px" id="password" required ="true" 
+                          requiredMessage="The password field cannot be empty"
+                        title="Please enter your password"
+                        value="#{register.password}"
+                        validatorMessage="The length of your 
+                        password must be between 3 and 10.">
+                    <f:validateLength maximum="10" minimum="3" />
+                </h:inputSecret>
+                <h:messages for="password" style="color:red; margin:5px;" />  
+            </p>
+            
+            <br/>
+            Please add at least one Tag from the following Options:            
+            <br/>   
+            <h:selectManyCheckbox layout="lineDirection" class="checkbox" value="#{register.tag_obj.addedTags}" required="true"
+                                  requiredMessage="Select atleast one Tag"><br/>
+                <f:selectItem itemValue="History Buff" itemLabel="History Buff "/>           
+                <f:selectItem itemValue="Urban Explorer" itemLabel="Urban Explorer"/>
+                <f:selectItem itemValue="Nature Lover" itemLabel="Nature Lover"/>
+                <f:selectItem itemValue="Shopping Fanatic" itemLabel="Shopping Fanatic"/>  
+                <f:selectItem itemValue="Beach Goer" itemLabel="Beach Goer"/>
+                <f:selectItem itemValue="Family Vacationer" itemLabel="Family Vacationer"/>
+            </h:selectManyCheckbox>              
+            <h:messages for="submit" style="color:red; margin:5px;" />  
+            
+            <p>                
+                <h:commandButton class="btn btn-success" id="submit" value="Register"
+                                 action="register_confirmation.xhtml" />             
+            </p>
+
+        </h:form>
+        
+        <div>           
+            <h:form>
+                <h:commandButton id="return" class="btn btn-danger" value="Cancel"  
+                                action="index.xhtml" /> 
+            </h:form>            
+        </div>  
+        
+        
+    </h:body>
+</html>

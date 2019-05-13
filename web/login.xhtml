@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Login</title>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="refresh"/>
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+          
+
+    </h:head>    
+     <h:body style="margin-left: 50px">       
+        <h:form>           
+            <h3>Login to Your User Account</h3>
+            <div>    
+            Please enter your online access ID:<br></br>
+                <h:inputText class="form-control" id="id" required ="true" style="width:300px"
+                             requiredMessage="The ID field cannot be empty"
+                        title="Please enter your ID"
+                        value="#{login.id}"
+                       
+                 validatorMessage="The ID must be between 3 and 10 characters">
+                    <f:validateLength maximum="10" minimum="3" />
+                </h:inputText>
+            <h:messages for="id" style="color:red; margin:5px;" />  
+            </div>
+            <br/>
+            <p>Please enter your password:<br></br>
+                <h:inputSecret class="form-control" id="psw" required ="true" style="width:300px"
+                          requiredMessage="The password field cannot be empty"
+                        title="Please enter your psw"
+                        value="#{login.password}"/>
+                <h:messages for="psw" style="color:red; margin:5px;" />  
+                     
+            </p>
+            
+            <p>
+                <h:commandButton class="btn btn-danger" id="subm" value="Login"
+                                 action="#{login.login()}" />                                
+            </p>   
+            
+        </h:form>
+            
+        <h:form> 
+            <h:commandButton id="return" class="btn btn-danger" value="Cancel" action="index.xhtml" /> 
+        </h:form>     
+         
+         <br/>
+         
+         
+         
+        
+         
+     </h:body>    
+</html>

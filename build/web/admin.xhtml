@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Welcome Admin Page</title>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />        
+        <meta http-equiv="refresh" />        
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>                        
+        
+        <link rel="stylesheet" href="Main_CSS.css"></link>
+        
+    </head>
+    <body>    
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                    
+        <div class="container">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>             
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <p class="navbar-text" style="font-size:larger; color:seagreen"><strong> Welcome #{login.id}</strong></p> 
+                                 
+                </ul> 
+                
+                <ul class="nav navbar-nav navbar-right">                    
+                <li class="active"><a class="btn btn-transparent" role="button" href="index.xhtml" ><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                </ul> 
+                
+                <ul class="nav navbar-nav navbar-right">                    
+                <li ><a class="btn btn-transparent" style="color: red" role="button" href="BlockUsers.xhtml" ><span class="glyphicon glyphicon-ban-circle"></span> Block Users</a></li>
+                </ul>  
+                
+                                 
+                <ul class="nav navbar-nav navbar-left">
+                    <p class="navbar-text active" 
+                       style="display: #{not empty reqDecision.requests ? 'list-item' : 'none'};
+                       font-size:larger; color:red"><strong>Pending Attractions: <span class="glyphicon glyphicon-bell"></span> <sup>#{reqDecision.requests.size()}</sup></strong></p>                                  
+                </ul> 
+                
+                <ul class="nav navbar-nav navbar-left">
+                    <p class="navbar-text active" 
+                       style="display: #{not empty reqUserApproval.requests_users ? 'list-item' : 'none'};
+                       font-size:larger; color:cyan"><strong>InActive Users: <span class="glyphicon glyphicon-bell"></span> <sup>#{reqUserApproval.requests_users.size()}</sup></strong></p>                                  
+                </ul>     
+                
+            </div>
+        </div>
+        </nav>
+        
+       
+        <!-- Start Image Slide Show -->     
+                <ul class="slideshow">
+                    <li><span>Image 01</span><div><h3>A Little Adventure...</h3></div></li>
+                    <li><span>Image 02</span><div><h3>Into the Realms...</h3></div></li>
+                    <li><span>Image 03</span><div><h3>Away from the Mundane...</h3></div></li>
+                    <li><span>Image 04</span><div><h3>Into the Lap of Nature...</h3></div></li>
+                    <li><span>Image 05</span><div><h3>Explore the Unknown...</h3></div></li>
+                    <li><span>Image 06</span><div><h3>Beyond the Horizons...</h3></div></li>
+                </ul> 
+            <!-- End Image Slide Show --> 
+        <div class="container">
+            <center>
+        <h:form id="adminForm" style="margin-top:80px; margin-left: 20px; color: black; background:  white; border-radius: 10px;
+                background-image: url(./Travel_Images/Sky.jpg)"> 
+            <br/> 
+            <p>Number of Attractions in Pending Status: #{reqDecision.requests.size()}</p>
+            <br/>
+            
+            <h:dataTable id="requestList" rowClasses="highlight"
+                 rows ="#{reqDecision.requests.size()}" 
+                 value="#{reqDecision.requests}" var="obj"
+                class="table table-striped table-bordered table-hover table-responsive" 
+                style="width:auto; text-align:center; background-image: url(./Travel_Images/Homes.jpg)" rendered="#{not empty reqDecision.requests}"
+                  >
+                <h:column>
+                    <f:facet name="header"><center>User ID</center></f:facet>
+                    #{obj.user_id}                    
+                </h:column>     
+                <h:column>
+                    <f:facet name="header"><center>Attraction ID</center></f:facet>
+                    #{obj.attr_Id}                    
+                </h:column> 
+                <h:column>
+                    <f:facet name="header"><center>Attraction Name</center></f:facet>
+                    #{obj.attr_Name}                    
+                </h:column> 
+                <h:column>
+                    <f:facet name="header"><center>Attraction Description</center></f:facet>
+                    #{obj.attr_Desc}                    
+                </h:column> 
+                <h:column>
+                    <f:facet name="header"><center>Attraction City</center></f:facet>
+                    #{obj.city}                    
+                </h:column> 
+                <h:column>
+                    <f:facet name="header"><center>Attraction State</center></f:facet>
+                    #{obj.state}                    
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><center>Attraction Status</center></f:facet>
+                    #{obj.request_status}                    
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><center>Tag</center></f:facet>
+                    #{obj.tag_name}                    
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><center>Approve</center></f:facet>
+                    <h:commandLink action="#{reqDecision.accept(obj.attr_Id)}">
+                    <i class="glyphicon glyphicon-ok" style="color:green" data-toggle="tooltip" data-placement="left" title="Approve"></i>
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><center>Reject</center></f:facet>
+                    <h:commandLink action="#{reqDecision.reject(obj.attr_Id)}">
+                    <i class="glyphicon glyphicon-trash" style="color:red" data-toggle="tooltip" data-placement="left" title="Reject"></i>
+                    </h:commandLink>
+                </h:column>                
+            </h:dataTable>      
+            
+            <br/>                  
+            
+            <p>Number of Users in InActive Status: #{reqUserApproval.requests_users.size()}</p>
+            <br/>
+            
+            <h:dataTable id="requestUsersList" rowClasses="highlight"
+                 rows ="#{reqUserApproval.requests_users.size()}" 
+                 value="#{reqUserApproval.requests_users}" var="usr"
+                class="table table-striped table-bordered table-hover table-responsive" 
+                style="width:auto; text-align:center; background-image: url(./Travel_Images/Homes.jpg)" rendered="#{not empty reqUserApproval.requests_users}">
+                
+                <h:column>
+                    <f:facet name="header"><center>User ID</center></f:facet>
+                    #{usr.id}                    
+                </h:column>     
+                <h:column>
+                    <f:facet name="header"><center>Password</center></f:facet>
+                    #{usr.password}                    
+                </h:column> 
+                <h:column>
+                    <f:facet name="header"><center>Status</center></f:facet>
+                    #{usr.user_status}                    
+                </h:column>                 
+                <h:column>
+                    <f:facet name="header"><center>Add New User</center></f:facet>
+                    <h:commandLink action="#{reqUserApproval.accept(usr.id)}">
+                    <i class="glyphicon glyphicon-plus-sign" style="color:green" data-toggle="tooltip" data-placement="left" title="Add"></i>
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><center>Remove New User</center></f:facet>
+                    <h:commandLink action="#{reqUserApproval.reject(usr.id)}">
+                    <i class="glyphicon glyphicon-minus-sign" style="color:red" data-toggle="tooltip" data-placement="left" title="Remove"></i>
+                    </h:commandLink>
+                </h:column>                
+            </h:dataTable>    
+            <br/>
+        </h:form>
+            </center>
+        </div>
+    </body>
+</html>

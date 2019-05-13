@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>About Travel Advisor</title>       
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+             
+        <link rel="stylesheet" href="Main_CSS.css"></link>
+        <link rel="stylesheet" href="Tags_Checkboxes_CSS.css"></link>  
+        <link rel="stylesheet" href="ModalForms_CSS.css"></link>  
+        <link rel="stylesheet" href="Contact_CSS.css"></link>     
+     
+         
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="refresh"/>
+        
+    </h:head>
+    <h:body>   
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                    
+        <div class="container">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>             
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <p class="navbar-text" style="font-size:larger; color:seagreen"><strong> Travel Advisor</strong></p> 
+                    <li><a href="index.xhtml"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li  class="active"><a href="About.xhtml">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>                 
+                </ul>
+                     
+                 <ul class="nav navbar-nav navbar-right">                    
+                <li><a class="btn btn-transparent" role="button" href="#" data-toggle="modal" data-target="#modalLogin"
+                       data-backdrop="static" data-keyboard="false"
+                       ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">                    
+                <li><a class="btn btn-transparent" role="button" href="#" data-toggle="modal" data-target="#modalRegister"
+                       data-backdrop="static" data-keyboard="false"
+                       ><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
+                </ul>
+                
+                <!--
+                <ul class="nav navbar-nav navbar-right">                    
+                <li><a class="btn btn-transparent" role="button" href="login.xhtml"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">                
+                <li><a class="btn btn-transparent" role="button" href="register.xhtml"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
+                </ul>                         
+                -->
+                
+            </div>
+        </div>
+        </nav>
+        
+        <br/>
+        
+        <!-- Login Modal Call -->
+        <div class="modal fade" data-refresh="true" tabindex="-1" role="dialog" id="modalLogin" style="color: black">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Login</h5>  
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body" data-refresh="true">
+                   <h:form>                   
+                        <div>    
+                        Your User ID:<br></br>
+                            <h:inputText class="form-control" id="id" required ="true" style="width:300px"
+                                         requiredMessage="The ID field cannot be empty"
+                                    title="Please enter your ID"
+                                    onfocus="this.value=''"
+                                    p:placeholder="Enter ID"
+                                    value="#{login.id}"
+                             validatorMessage="ID must be between 3 and 10 characters">
+                                <f:validateLength maximum="10" minimum="3" />
+                            </h:inputText>
+                        <h:messages for="id" style="color:red; margin:5px;" />  
+                        </div>
+                        <br/>
+                        <p>Your Password:<br></br>
+                            <h:inputSecret class="form-control" id="psw" required ="true" style="width:300px"
+                                      requiredMessage="Password field cannot be empty"
+                                    title="Please enter your psw"
+                                    onfocus="this.value=''"
+                                    p:placeholder="Enter Password"
+                                    value="#{login.password}"/>
+                            <h:messages for="psw" style="color:red; margin:5px;" />  
+
+                        </p>
+                        <br/>
+                        
+                            <h:commandButton class="btn btn-primary btn-lg" id="submit" value="Login"
+                                             action="#{login.login()}" />                                
+                          
+                            <span> </span>
+                            
+                            <h:commandButton class="btn btn-info btn-lg" id="changepwd" value="Change Password"
+                                             action="#{login.checkCredentials()}" />   
+                        
+
+                    </h:form>
+                    
+                </div>
+                <div class="modal-footer">                  
+                  <button type="button" class="btn btn-default" data-refresh="true" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+        <!-- Register Modal Call -->
+        <div class="modal fade" data-refresh="true" tabindex="-1" role="dialog" id="modalRegister" style="color: black">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Register</h5>                  
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <h:form>
+                        <p>Please enter your User ID to Register:<br></br>
+                            <h:inputText class="form-control" style="width:300px" id="id" required ="true" 
+                                         requiredMessage="The ID field cannot be empty"
+                                    title="Please enter your ID"
+                                    onfocus="this.value=''"
+                                    p:placeholder="Enter ID"
+                                    value="#{register.id}"
+                                    validatorMessage="The length of your selected 
+                                    ID must be between 3 and 10 and also must contain atleast 1 letter and 1 digit.">
+                                <f:validateRegex pattern ="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,10}$" />              
+                            </h:inputText>
+                            <h:messages for="id" style="color:red; margin:5px;" />                
+                        </p>
+                        <br/>
+                        <p>Please enter your selected password:<br></br>
+                            <h:inputSecret class="form-control" style="width:300px" id="password" required ="true" 
+                                      requiredMessage="The password field cannot be empty"
+                                    title="Please enter your password"
+                                    onfocus="this.value=''"
+                                    p:placeholder="Enter Password"
+                                    
+                                    value="#{register.password}"
+                                    validatorMessage="The length of your 
+                                    password must be between 3 and 10.">
+                                <f:validateLength maximum="10" minimum="3" />
+                            </h:inputSecret>
+                            <h:messages for="password" style="color:red; margin:5px;" />  
+                        </p>
+
+                        <br/>
+                        Choose a Tag (Minimum 1):       
+                        <h:messages for="check" style="color:red; margin:5px;" />
+                        <br/>   
+                        <h:selectManyCheckbox id="check" layout="lineDirection" class="checkbox" value="#{register.tag_obj.addedTags}" required="true"
+                                              requiredMessage="Select atleast one Tag"><br/>
+                            <f:selectItem itemValue="History Buff" itemLabel="History Buff "/>           
+                            <f:selectItem itemValue="Urban Explorer" itemLabel="Urban Explorer"/>
+                            <f:selectItem itemValue="Nature Lover" itemLabel="Nature Lover"/>
+                            <f:selectItem itemValue="Shopping Fanatic" itemLabel="Shopping Fanatic"/>  
+                            <f:selectItem itemValue="Beach Goer" itemLabel="Beach Goer"/>
+                            <f:selectItem itemValue="Family Vacationer" itemLabel="Family Vacationer"/>
+                        </h:selectManyCheckbox>
+                        
+                        <h:commandButton id="submit" class="btn btn-primary btn-lg" value="Register" action="register_confirmation.xhtml"/>
+                        
+                    </h:form>                  
+                </div>
+                <div class="modal-footer">                  
+                  <button type="button" class="btn btn-default" data-refresh="true" data-dismiss="modal">Close</button>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+  
+                        
+        
+         <!-- Start Image Slide Show -->     
+                <ul class="slideshow">
+                    <li><span>Image 01</span><div><h3>A Little Adventure...</h3></div></li>
+                    <li><span>Image 02</span><div><h3>Into the Realms...</h3></div></li>
+                    <li><span>Image 03</span><div><h3>Away from the Mundane...</h3></div></li>
+                    <li><span>Image 04</span><div><h3>Into the Lap of Nature...</h3></div></li>
+                    <li><span>Image 05</span><div><h3>Explore the Unknown...</h3></div></li>
+                    <li><span>Image 06</span><div><h3>Beyond the Horizons...</h3></div></li>
+                </ul> 
+            <!-- End Image Slide Show -->            
+       
+        
+       
+        <div class="container mt-40" style="margin-top:80px">
+            
+            <div class="container">
+            
+            <div class="row mt-40">
+                <div class="col-md-6 col-sm-6">
+                    <div class="box1">
+                        <img src="./Travel_Images/Amit.jpg" alt="" class="img-thumbn" style="height:350px; width:350px"/>
+                        <h3 class="title">Amit Kaul</h3>                        
+                        <ul class="icon">
+                            <li><a href="https://www.facebook.com/amit.kaul.549"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="box1">
+                        <img src="./Travel_Images/Rahil.jpg" alt="" class="img-thumbn" style="height:350px; width:350px"/>
+                        <h3 class="title">Rahil Hasnani</h3>                        
+                        <ul class="icon">
+                            <li><a href="https://www.facebook.com/rahil.hasnani"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        
+            <p style="font-size: 20px; color:white">Developed By: Amit Kaul, Rahil Hasnani   &#169;Fall 2018</p>
+        </div>       
+       
+    </h:body>
+</html>

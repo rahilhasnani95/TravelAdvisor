@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
+        <title>Welcome User Page</title>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />        
+        <meta http-equiv="refresh" />
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+               
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"></link>
+        
+        <link rel="stylesheet" href="Main_CSS.css"></link>
+        <link rel="stylesheet" href="NavBar_Welcome_CSS.css"></link>  
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                    
+        <div class="container">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>             
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <p class="navbar-text" style="font-size:larger; color:seagreen"><strong> Welcome #{login.id}</strong></p> 
+                                 
+                </ul>          
+                
+                <ul class="nav navbar-nav navbar-right">                    
+                <li class="active"><a class="btn btn-transparent" role="button" href="index.xhtml" ><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                </ul>  
+                <ul class="nav navbar-nav navbar-right">                    
+                    <li class="active" style="display: #{not empty attractions.viewNotifications(login.id) ? 'list-item' : 'none'};"><a class="btn btn-transparent" style="font-size: medium; color:blue" role="button"  href="Notifications_MainPage.xhtml" ><strong><span class="glyphicon glyphicon-bell"></span><sup>#{attractions.viewNotifications(login.id).size()}</sup></strong></a></li>
+                    
+                </ul>  
+            </div>
+        </div>
+        </nav>
+        
+      
+        
+    <!-- Start Image SlideShow -->     
+    <ul class="slideshow">
+        <li><span>Image 01</span><div><h3>A Little Adventure...</h3></div></li>
+        <li><span>Image 02</span><div><h3>Into the Realms...</h3></div></li>
+        <li><span>Image 03</span><div><h3>Away from the Mundane...</h3></div></li>
+        <li><span>Image 04</span><div><h3>Into the Lap of Nature...</h3></div></li>
+        <li><span>Image 05</span><div><h3>Explore the Unknown...</h3></div></li>
+        <li><span>Image 06</span><div><h3>Beyond the Horizons...</h3></div></li>
+    </ul> 
+    <!-- End Image SlideShow -->  
+            
+    
+    <div class="area"></div><nav class="main-menu" style="margin-top: 45px;">
+            <ul>
+                <li>
+                    <a href="CreateAttraction.xhtml">
+                        <i class="fa fa-plus fa-2x"></i>
+                        <span class="nav-text">
+                            Create Attraction
+                        </span>
+                    </a>                  
+                </li>                
+                <li class="has-subnav">
+                    <a href="ViewAttraction.xhtml">
+                        <i class="fa fa-laptop fa-2x"></i>
+                        <span class="nav-text">
+                            View Attractions
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="RateAttraction.xhtml">
+                       <i class="fa fa-edit fa-2x"></i>
+                        <span class="nav-text">
+                            Rate Attractions
+                        </span>
+                    </a>                    
+                </li>        
+                
+                <li class="has-subnav">
+                    <a href="SearchAttraction_By_City.xhtml">
+                       <i class="fa fa-search fa-2x"></i>
+                        <span class="nav-text">
+                            Search Attraction: By City
+                        </span>
+                    </a>                   
+                </li>
+                
+                
+                
+                <li class="has-subnav">
+                    <a href="SearchAttraction_By_Tag.xhtml">
+                       <i class="fa fa-search fa-2x"></i>
+                        <span class="nav-text">
+                            Search Attraction: By Tag
+                        </span>
+                    </a>                   
+                </li>
+                <li>
+                    <a href="FavDestinationCity.xhtml">
+                        <i class="fa fa-plane fa-2x"></i>
+                        <span class="nav-text">
+                            Mark Favorite Destination : City
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="FavDestinationName.xhtml">
+                        <i class="fa fa-plane fa-2x"></i>
+                        <span class="nav-text">
+                            Mark Favorite Destination : Attraction Name
+                        </span>
+                    </a>
+                </li> 
+                
+                <li>
+                    <a href="ViewFavoriteCity.xhtml">
+                        <i class="fa fa-eye fa-2x"></i>
+                        <span class="nav-text">
+                            <h2>View Favorite Destination: City</h2>
+                        </span>
+                    </a>
+                </li>  
+                <li>
+                    <a href="ViewFavoriteAttraction.xhtml">
+                        <i class="fa fa-eye fa-2x"></i>
+                        <span class="nav-text">
+                            <h2>View Favorite Destination: Attraction</h2>
+                        </span>
+                    </a>
+                </li>  
+                <li>
+                    <a href="Ask_Question_MainPage.xhtml">
+                        <i class="fa fa-question fa-2x"></i>
+                        <span class="nav-text">
+                            <h2>Ask a Question</h2>
+                        </span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="Reply_Question_MainPage.xhtml">
+                        <i class="fa fa-reply fa-2x"></i>
+                        <span class="nav-text">
+                            <h2>Reply to a Question</h2>
+                        </span>
+                    </a>
+                </li>                
+            </ul>            
+        </nav>
+         
+    </body>
+</html>
